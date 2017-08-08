@@ -1,65 +1,20 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Displaying text</title>
+<title>Train rage!</title></title>
+<style>
+    .pixelated{
+        image-rendering: -moz-crisp-edges;          /* Firefox */
+        image-rendering: -o-crisp-edges;            /* Opera */
+        image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;                 /* Chrome */
+        -ms-interpolation-mode: nearest-neighbor;   /* IE (non-standard property) */
+    }
+</style>
 <body>
+    <div id="render-place" align="center" style="margin-top: 50px" class="pixelated">
+
+    </div>
 <script src="./pixijs/pixi.js"></script>
-<script>
-
-    //Aliases
-    var Container = PIXI.Container,
-                autoDetectRenderer = PIXI.autoDetectRenderer,
-                Text = PIXI.Text,
-                Sprite = PIXI.Sprite;
-
-    //Create a Pixi stage and renderer and add the 
-    //renderer.view to the DOM
-    var stage = new Container(),
-                renderer = autoDetectRenderer(64, 64);
-    document.body.appendChild(renderer.view);
-
-    PIXI.loader
-                .add("images/background_1.png")
-                .add("images/rails.png")
-                .load(setup);
-
-    var rails;
-
-    function setup() {
-        var background = new Sprite(PIXI.loader.resources["images/background_1.png"].texture);
-        stage.addChild(background);
-        /*var message = new Text(
-        "HELL YEAH!",
-        { font: "10px sans-serif", fill: "white" }
-        );
-        message.position.set(5, 20);*/
-        rails = new Sprite(PIXI.loader.resources["images/rails.png"].texture);
-        rails.position.set(0, 56);
-
-        stage.addChild(rails);
-
-        //Set the game state
-        state = play;
-
-        //Start the game loop
-        gameLoop();
-    }
-
-    function gameLoop() {
-        //Loop this function 60 times per second
-        requestAnimationFrame(gameLoop);
-        //Update the current game state
-        state();
-        //Render the stage
-        renderer.render(stage);
-    }
-
-    function play() {
-        rails.x -= 1;
-        if (rails.x <= -3) {
-            rails.x = 0;
-        }
-    }
-</script>
+<script src="./js/main.js"></script>
 </body>
-
-
